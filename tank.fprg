@@ -1,0 +1,342 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="tank"/>
+        <attribute name="authors" value="Neith PC"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-11-14 03:23:15 PM"/>
+        <attribute name="created" value="TmVpdGggUEM7TkVJVEhQQzsyMDIzLTA1LTE3OzA0OjE4OjQwIFBNOzI0ODc="/>
+        <attribute name="edited" value="TmVpdGggUEM7TkVJVEhQQzsyMDIzLTA4LTA3OzAyOjIxOjU5IEFNOzI3NjsyNjk0"/>
+        <attribute name="edited" value="VXNlcjtORUlUSFBDOzIwMjQtMDMtMTc7MDY6MzQ6NDUgQU07MjsyMzE3"/>
+        <attribute name="edited" value="bmVpdGg7TkVJVEg7MjAyNS0xMS0xNDswMzoyMzoxNSBQTTszOzIyOTY="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="salhilah" type="Boolean" array="False" size=""/>
+            <assign variable="salhilah" expression="True"/>
+            <output expression="&quot;artillery game&quot;" newline="True"/>
+            <output expression="&quot;tehnik hangamj bolon ayulgui baidliin shaltgaanaas tank ni 2-oos 178 gradusaar buudna. huchnii hemjee 18-ees 100 hoorond bn&quot;" newline="True"/>
+            <output expression="&quot;zuvluguu: toglogch2 100+ untsguur buudaj baij sum zuun tal ruu yvna. huchnii hemjee ni anhnii hurd ba 1 nud ni 50 metriin hemjeetei baina. do some math :)&quot;" newline="True"/>
+            <comment text="collision&#13;&#10;1. tank1 ustsan&#13;&#10;2. tank2 ustsan&#13;&#10;3. gazart tussan&#13;&#10;4. mapnaas garsan"/>
+            <comment text="&#1090;&#1086;&#1075;&#1083;&#1086;&#1086;&#1084;&#1099;&#1085; &#1075;&#1072;&#1079;&#1088;&#1099;&#1085; &#1090;&#1091;&#1093;&#1072;&#1081; &#1084;&#1101;&#1076;&#1101;&#1101;&#1083;&#1083;&#1080;&#1081;&#1075; &#1093;&#1072;&#1076;&#1075;&#1072;&#1083;&#1085;&#1072;"/>
+            <declare name="sand" type="Integer" array="True" size="601"/>
+            <comment text="&#1076;&#1072;&#1074;&#1090;&#1072;&#1083;&#1090; &#1073;&#1086;&#1083;&#1086;&#1085; &#1090;&#1199;&#1088; &#1093;&#1072;&#1076;&#1075;&#1072;&#1083;&#1072;&#1093; &#1084;&#1101;&#1076;&#1101;&#1101;&#1083;&#1083;&#1199;&#1199;&#1076;&#1080;&#1081;&#1075; &#1093;&#1072;&#1076;&#1075;&#1072;&#1083;&#1085;&#1072;"/>
+            <declare name="h, i, r, j, temp, col" type="Integer" array="False" size=""/>
+            <comment text="&#1090;&#1072;&#1085;&#1082;&#1085;&#1091;&#1091;&#1076;&#1099;&#1085; &#1073;&#1072;&#1081;&#1088;&#1096;&#1083;&#1099;&#1085; &#1084;&#1101;&#1076;&#1101;&#1101;&#1083;&#1083;&#1080;&#1081;&#1075; &#1093;&#1072;&#1076;&#1075;&#1072;&#1083;&#1085;&#1072;"/>
+            <declare name="tank1, tank2, tank1x, tank1y, tank2x, tank2y" type="Integer" array="False" size=""/>
+            <comment text="&#1090;&#1072;&#1085;&#1082;&#1085;&#1091;&#1091;&#1076;&#1099;&#1085; &#1094;&#1086;&#1093;&#1080;&#1083;&#1090;&#1099;&#1085; &#1094;&#1101;&#1075;&#1199;&#1199;&#1076;&#1080;&#1081;&#1085; &#1084;&#1101;&#1076;&#1101;&#1101;&#1083;&#1083;&#1080;&#1081;&#1075; &#1093;&#1072;&#1076;&#1075;&#1072;&#1083;&#1085;&#1072;"/>
+            <declare name="hitpoints" type="Integer" array="True" size="9"/>
+            <comment text="&#1093;&#1101;&#1088;&#1101;&#1074; &#1089;&#1072;&#1083;&#1093;&#1080;&#1090;&#1072;&#1081; &#1073;&#1086;&#1083; &#1089;&#1072;&#1083;&#1093;&#1080;&#1085;&#1099; &#1090;&#1091;&#1093;&#1072;&#1081; &#1084;&#1101;&#1076;&#1101;&#1101;&#1083;&#1083;&#1080;&#1081;&#1075; &#1093;&#1072;&#1076;&#1075;&#1072;&#1083;&#1085;&#1072;"/>
+            <declare name="salhi" type="Real" array="False" size=""/>
+            <assign variable="h" expression="0"/>
+            <assign variable="col" expression="0"/>
+            <assign variable="hitpoints[0]" expression="0"/>
+            <comment text="2 &#1090;&#1072;&#1085;&#1082;&#1085;&#1099; &#1073;&#1072;&#1081;&#1088;&#1096;&#1083;&#1091;&#1091;&#1076;&#1099;&#1085; &#1084;&#1101;&#1076;&#1101;&#1101;&#1083;&#1083;&#1080;&#1081;&#1075; &#1093;&#1072;&#1076;&#1075;&#1072;&#1083;&#1085;&#1072;. &#1093;&#1086;&#1086;&#1088;&#1086;&#1085;&#1076;&#1086;&#1086; &#1073;&#1072;&#1075;&#1072;&#1076;&#1072;&#1072; 6 &#1085;&#1199;&#1076;&#1085;&#1080;&#1081; &#1079;&#1072;&#1081;&#1090;&#1072;&#1081; &#1073;&#1072;&#1081;&#1085;&#1072;."/>
+            <assign variable="tank1" expression="random(6)"/>
+            <do expression="tank2&gt;11">
+                <assign variable="tank2" expression="tank1 + 6 + Random(6)"/>
+            </do>
+            <comment text="salhi"/>
+            <assign variable="salhi" expression="0"/>
+            <comment text="&#1093;&#1101;&#1088;&#1101;&#1074; &#1089;&#1072;&#1083;&#1093;&#1080;&#1090;&#1072;&#1081; &#1073;&#1072;&#1081;&#1083;&#1075;&#1072;&#1093; &#1073;&#1086;&#1083; &#1089;&#1072;&#1083;&#1093;&#1080;&#1081;&#1075; &#1089;&#1072;&#1085;&#1072;&#1084;&#1089;&#1072;&#1088;&#1075;&#1199;&#1081;&#1075;&#1101;&#1101;&#1088; &#1199;&#1199;&#1089;&#1075;&#1101;&#1085;&#1101;"/>
+            <if expression="salhilah==True">
+                <then>
+                    <if expression="Random(2)==0">
+                        <then>
+                            <assign variable="salhi" expression="Random(6)"/>
+                            <output expression="&quot;salhi zuunees : &quot; &amp; salhi" newline="True"/>
+                        </then>
+                        <else>
+                            <assign variable="salhi" expression="-(Random(6))"/>
+                            <output expression="&quot;salhi baruunaas : &quot; &amp; -salhi" newline="True"/>
+                        </else>
+                    </if>
+                </then>
+                <else/>
+            </if>
+            <comment text="&#1075;&#1072;&#1079;&#1072;&#1088; &#1079;&#1091;&#1088;&#1085;&#1072;"/>
+            <home/>
+            <turn expression="90" rotate="right"/>
+            <comment text="&#1075;&#1072;&#1079;&#1072;&#1088; &#1085;&#1100; 12 &#1085;&#1199;&#1076;&#1090;&#1101;&#1081; &#1073;&#1072;&#1081;&#1085;&#1072;"/>
+            <for variable="i" start="0" end="11" direction="inc" step="1">
+                <comment text="&#1075;&#1072;&#1079;&#1088;&#1099;&#1085; &#1257;&#1085;&#1076;&#1257;&#1088; &#1085;&#1072;&#1084;&#1099;&#1075; &#1089;&#1072;&#1085;&#1072;&#1084;&#1089;&#1072;&#1088;&#1075;&#1199;&#1081;&#1075;&#1101;&#1101;&#1088; &#1089;&#1086;&#1085;&#1075;&#1086;&#1078; &#1199;&#1199;&#1089;&#1075;&#1101;&#1085;&#1101;"/>
+                <assign variable="r" expression="random(2)"/>
+                <comment text="&#1257;&#1084;&#1085;&#1257;&#1093; &#1085;&#1199;&#1076;&#1085;&#1101;&#1101;&#1089; &#1076;&#1101;&#1101;&#1096; &#1101;&#1089;&#1074;&#1101;&#1083; &#1076;&#1086;&#1086;&#1096; &#1073;&#1072;&#1081;&#1093;&#1099;&#1075; &#1089;&#1072;&#1085;&#1072;&#1084;&#1089;&#1072;&#1088;&#1075;&#1199;&#1081;&#1075;&#1101;&#1101;&#1088; &#1089;&#1086;&#1085;&#1075;&#1086;&#1085;&#1086;"/>
+                <if expression="r == 1">
+                    <then>
+                        <assign variable="h" expression="h+25"/>
+                        <turn expression="90" rotate="left"/>
+                        <forward expression="25" pen="down"/>
+                        <turn expression="90" rotate="right"/>
+                        <forward expression="50" pen="down"/>
+                    </then>
+                    <else>
+                        <assign variable="h" expression="h-25"/>
+                        <turn expression="90" rotate="right"/>
+                        <forward expression="25" pen="down"/>
+                        <turn expression="90" rotate="left"/>
+                        <forward expression="50" pen="down"/>
+                    </else>
+                </if>
+                <for variable="j" start="0" end="49" direction="inc" step="1">
+                    <assign variable="temp" expression="i*50+j"/>
+                    <assign variable="sand[temp]" expression="h"/>
+                </for>
+            </for>
+            <comment text="&#1090;&#1072;&#1085;&#1082;&#1085;&#1099; &#1073;&#1072;&#1081;&#1088;&#1096;&#1080;&#1083; &#1073;&#1086;&#1083;&#1086;&#1085; &#1094;&#1086;&#1093;&#1080;&#1083;&#1090;&#1099;&#1085; &#1094;&#1101;&#1075;&#1199;&#1199;&#1076;&#1080;&#1081;&#1075; &#1199;&#1199;&#1089;&#1075;&#1101;&#1078; &#1093;&#1072;&#1076;&#1075;&#1072;&#1083;&#1085;&#1072;"/>
+            <assign variable="h" expression="sand [ tank1*50 ] + 1"/>
+            <assign variable="tank1x" expression="tank1*50+25"/>
+            <assign variable="tank1y" expression="h + 25"/>
+            <assign variable="hitpoints[1]" expression="tank1x-25"/>
+            <assign variable="hitpoints[2]" expression="tank1x+25"/>
+            <assign variable="hitpoints[3]" expression="tank1y"/>
+            <assign variable="hitpoints[4]" expression="tank1y-25"/>
+            <comment text="&#1090;&#1072;&#1085;&#1082; &#1079;&#1091;&#1088;&#1072;&#1093; &#1092;&#1091;&#1085;&#1082;&#1094;&#1099;&#1075; &#1076;&#1091;&#1091;&#1076;&#1085;&#1072;"/>
+            <call expression="tank(tank1,h)"/>
+            <assign variable="h" expression="sand [ tank2*50 ] + 1"/>
+            <assign variable="tank2x" expression="tank2*50+25"/>
+            <assign variable="tank2y" expression="h+25 + 1"/>
+            <assign variable="hitpoints[5]" expression="tank2x-25"/>
+            <assign variable="hitpoints[6]" expression="tank2x+25"/>
+            <assign variable="hitpoints[7]" expression="tank2y"/>
+            <assign variable="hitpoints[8]" expression="tank2y-25"/>
+            <comment text="&#1090;&#1072;&#1085;&#1082; &#1079;&#1091;&#1088;&#1072;&#1093; &#1092;&#1091;&#1085;&#1082;&#1094;&#1099;&#1075; &#1076;&#1091;&#1091;&#1076;&#1085;&#1072;"/>
+            <call expression="tank(tank2,h)"/>
+            <comment text="2 &#1090;&#1072;&#1085;&#1082;&#1085;&#1099; &#1072;&#1083;&#1100; &#1085;&#1101;&#1075; &#1085;&#1100; &#1091;&#1089;&#1090;&#1072;&#1093; &#1093;&#1199;&#1088;&#1090;&#1101;&#1083; &#1090;&#1086;&#1075;&#1083;&#1086;&#1086;&#1084; &#1199;&#1088;&#1075;&#1101;&#1083;&#1078;&#1083;&#1101;&#1085;&#1101;"/>
+            <while expression="col!=1 &amp;&amp; col!=2">
+                <output expression="&quot;toglogch1&quot;" newline="True"/>
+                <comment text="&#1090;&#1086;&#1075;&#1083;&#1086;&#1075;&#1095; 1-&#1099;&#1085; &#1082;&#1086;&#1084;&#1072;&#1085;&#1076;&#1072;&#1072;&#1088; &#1102;&#1091; &#1073;&#1086;&#1083;&#1086;&#1093;&#1099;&#1075; &#1096;&#1072;&#1083;&#1075;&#1072;&#1085;&#1072;"/>
+                <assign variable="col" expression="shoot(tank1x,tank1y,hitpoints,sand, col, salhi)"/>
+                <comment text="&#1072;&#1083;&#1100; &#1085;&#1101;&#1075; &#1090;&#1072;&#1085;&#1082; &#1091;&#1089;&#1090;&#1089;&#1072;&#1085; &#1101;&#1089;&#1101;&#1093;&#1080;&#1081;&#1075; &#1096;&#1072;&#1083;&#1075;&#1072;&#1085;&#1072;. &#1085;&#1257;&#1093;&#1094;&#1257;&#1083; &#1086;&#1088;&#1091;&#1091;&#1083;&#1072;&#1093;&#1075;&#1199;&#1081; &#1090;&#1086;&#1075;&#1083;&#1086;&#1083;&#1090;&#1099;&#1075; &#1199;&#1088;&#1075;&#1101;&#1083;&#1078;&#1083;&#1199;&#1199;&#1083;&#1073;&#1101;&#1083; &#1090;&#1072;&#1085;&#1082; &#1091;&#1089;&#1090;&#1089;&#1072;&#1085; &#1073;&#1072;&#1081;&#1093;&#1072;&#1076; &#1090;&#1086;&#1075;&#1083;&#1086;&#1083;&#1090; &#1199;&#1088;&#1075;&#1101;&#1083;&#1078;&#1080;&#1083;&#1089;&#1101;&#1101;&#1088; &#1073;&#1072;&#1081;&#1093; &#1091;&#1095;&#1080;&#1088; &#1085;&#1257;&#1093;&#1094;&#1257;&#1083; &#1085;&#1101;&#1084;&#1078; &#1086;&#1088;&#1091;&#1091;&#1083;&#1089;&#1072;&#1085;"/>
+                <if expression="col!=1 &amp;&amp; col!=2">
+                    <then>
+                        <output expression="&quot;toglogch2&quot;" newline="True"/>
+                        <comment text="&#1090;&#1086;&#1075;&#1083;&#1086;&#1075;&#1095; 2-&#1099;&#1085; &#1082;&#1086;&#1084;&#1072;&#1085;&#1076;&#1072;&#1072;&#1088; &#1102;&#1091; &#1073;&#1086;&#1083;&#1086;&#1093;&#1099;&#1075; &#1096;&#1072;&#1083;&#1075;&#1072;&#1085;&#1072;"/>
+                        <assign variable="col" expression="shoot(tank2x,tank2y,hitpoints,sand, col, salhi)"/>
+                    </then>
+                    <else/>
+                </if>
+            </while>
+        </body>
+    </function>
+    <function name="checkCollision" type="Integer" variable="col">
+        <parameters>
+            <parameter name="x" type="Real" array="False"/>
+            <parameter name="y" type="Real" array="False"/>
+            <parameter name="hitpoints" type="Integer" array="True"/>
+            <parameter name="sand" type="Integer" array="True"/>
+            <parameter name="col" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <comment text="&#1089;&#1091;&#1084; &#1094;&#1086;&#1093;&#1080;&#1083;&#1090;&#1099;&#1085; &#1094;&#1101;&#1075;&#1090; &#1093;&#1199;&#1088;&#1089;&#1101;&#1085; &#1101;&#1089;&#1101;&#1093;&#1080;&#1081;&#1075; &#1096;&#1072;&#1083;&#1075;&#1072;&#1085;&#1072;"/>
+            <if expression="(x&gt;=hitpoints[1] &amp;&amp; x&lt;=hitpoints[2]) &amp;&amp;&#13;&#10;(y&lt;=hitpoints[3] &amp;&amp; y&gt;=hitpoints[4])">
+                <then>
+                    <comment text="tank1 ustsan"/>
+                    <assign variable="col" expression="1"/>
+                    <output expression="&quot;tank1 ustsan&quot;" newline="True"/>
+                    <output expression="&quot;TOGLOGCH 2 HOJLOO&quot;" newline="True"/>
+                    <call expression="explode"/>
+                </then>
+                <else/>
+            </if>
+            <if expression="(x&gt;=hitpoints[5] &amp;&amp; x&lt;=hitpoints[6]) &amp;&amp;&#13;&#10;(y&lt;=hitpoints[7] &amp;&amp; y&gt;=hitpoints[8])">
+                <then>
+                    <comment text="tank2 ustsan"/>
+                    <assign variable="col" expression="2"/>
+                    <output expression="&quot;tank2 ustsan&quot;" newline="True"/>
+                    <output expression="&quot;TOGLOGCH 1 HOJLOO&quot;" newline="True"/>
+                    <call expression="explode"/>
+                </then>
+                <else/>
+            </if>
+            <comment text="&#1089;&#1091;&#1084; &#1090;&#1072;&#1083;&#1073;&#1072;&#1081;&#1075;&#1072;&#1072;&#1089; &#1075;&#1072;&#1088;&#1089;&#1072;&#1085; &#1101;&#1089;&#1101;&#1093;&#1080;&#1081;&#1075; &#1096;&#1072;&#1083;&#1075;&#1072;&#1085;&#1072;"/>
+            <if expression="x&lt;=0 || x&gt;=600">
+                <then>
+                    <assign variable="col" expression="4"/>
+                    <output expression="&quot;sum talbaigaas garsan&quot;" newline="True"/>
+                </then>
+                <else>
+                    <comment text="&#1089;&#1091;&#1084; &#1075;&#1072;&#1079;&#1072;&#1088;&#1090; &#1093;&#1199;&#1088;&#1089;&#1101;&#1085; &#1101;&#1089;&#1101;&#1093;&#1080;&#1081;&#1075; &#1096;&#1072;&#1083;&#1075;&#1072;&#1085;&#1072;"/>
+                    <if expression="y&lt;=sand[x]">
+                        <then>
+                            <assign variable="col" expression="3"/>
+                            <output expression="&quot;sum gazart unasan&quot;" newline="True"/>
+                            <call expression="explode"/>
+                        </then>
+                        <else/>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="explode" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="&#1089;&#1091;&#1084; &#1090;&#1091;&#1089;&#1089;&#1072;&#1085; &#1075;&#1072;&#1079;&#1072;&#1088; &#1076;&#1199;&#1088;&#1089; &#1079;&#1091;&#1088;&#1085;&#1072;"/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <for variable="i" start="0" end="8" direction="inc" step="1">
+                <forward expression="15" pen="down"/>
+                <turn expression="random(40)+135" rotate="right"/>
+                <forward expression="15" pen="down"/>
+            </for>
+        </body>
+    </function>
+    <function name="shoot" type="Integer" variable="col">
+        <parameters>
+            <parameter name="tankx" type="Integer" array="False"/>
+            <parameter name="tanky" type="Integer" array="False"/>
+            <parameter name="hitpoints" type="Integer" array="True"/>
+            <parameter name="sand" type="Integer" array="True"/>
+            <parameter name="col" type="Integer" array="False"/>
+            <parameter name="salhi" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <declare name="degree, power, x1, y1, x2, y2, t, vx, vy, angle1, angle2, g, d" type="Real" array="False" size=""/>
+            <declare name="bulletinitialx, bulletinitialy" type="Real" array="False" size=""/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <comment text="&#1089;&#1091;&#1084;&#1085;&#1099; &#1101;&#1093;&#1085;&#1080;&#1081; &#1073;&#1072;&#1081;&#1088;&#1096;&#1083;&#1099;&#1075; &#1090;&#1086;&#1075;&#1083;&#1086;&#1075;&#1095;&#1080;&#1081;&#1085; &#1090;&#1072;&#1085;&#1082;&#1085;&#1099; &#1073;&#1072;&#1081;&#1088;&#1096;&#1080;&#1083; &#1088;&#1091;&#1091; &#1079;&#1257;&#1257;&#1085;&#1257;"/>
+            <home/>
+            <turn expression="90" rotate="right"/>
+            <forward expression="tankx" pen="up"/>
+            <turn expression="90" rotate="left"/>
+            <forward expression="tanky" pen="up"/>
+            <turn expression="90" rotate="right"/>
+            <comment text="&#1089;&#1091;&#1084;&#1085;&#1099; &#1073;&#1091;&#1091;&#1076;&#1072;&#1093; &#1257;&#1085;&#1094;&#1075;&#1080;&#1081;&#1075; &#1086;&#1088;&#1091;&#1091;&#1083;&#1085;&#1072;"/>
+            <do expression="angle1&gt;178 || angle1&lt;2">
+                <output expression="&quot;untsug oruulah&quot;" newline="True"/>
+                <input variable="angle1"/>
+                <if expression="angle1&gt;178 || angle1&lt;2">
+                    <then>
+                        <output expression="&quot;2-oos 178 hoorond&quot;" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+            </do>
+            <turn expression="angle1" rotate="left"/>
+            <comment text="&#1093;&#1199;&#1095;&#1085;&#1080;&#1081; &#1093;&#1101;&#1084;&#1078;&#1101;&#1101;&#1075; &#1086;&#1088;&#1091;&#1091;&#1083;&#1085;&#1072;"/>
+            <do expression="power&lt;18 || power &gt; 100">
+                <output expression="&quot;huchnii hemjee oruulah&quot;" newline="True"/>
+                <input variable="power"/>
+                <if expression="power&lt;18 || power&gt;100">
+                    <then>
+                        <output expression="&quot;18-ees 100 hoorond &quot;" newline="False"/>
+                    </then>
+                    <else/>
+                </if>
+            </do>
+            <comment text="&#1089;&#1091;&#1084;&#1085;&#1099; &#1073;&#1072;&#1081;&#1088;&#1096;&#1083;&#1099;&#1075; &#1096;&#1080;&#1085;&#1101;&#1095;&#1083;&#1101;&#1093; &#1093;&#1091;&#1075;&#1072;&#1094;&#1072;&#1072;&#1085;&#1099; &#1080;&#1085;&#1090;&#1077;&#1088;&#1074;&#1072;&#1083; &#1085;&#1100; 0.05 &#1089;&#1077;&#1082;&#1091;&#1085;&#1076; &#1090;&#1091;&#1090;&#1072;&#1084; &#1073;&#1072;&#1081;&#1085;&#1072;"/>
+            <assign variable="t" expression="0.05"/>
+            <comment text="&#1090;&#1086;&#1075;&#1083;&#1086;&#1083;&#1090; &#1101;&#1093;&#1083;&#1101;&#1093;&#1101;&#1076; &#1103;&#1084;&#1072;&#1088; &#1085;&#1101;&#1075;&#1101;&#1085; &#1079;&#1257;&#1088;&#1095;&#1080;&#1083;&#1076;&#1257;&#1257;&#1085; &#1199;&#1199;&#1089;&#1101;&#1101;&#1075;&#1199;&#1081; &#1075;&#1101;&#1078; &#1199;&#1079;&#1085;&#1101;"/>
+            <assign variable="col" expression="0"/>
+            <assign variable="x1" expression="0"/>
+            <assign variable="y1" expression="0"/>
+            <comment text="&#1090;&#1072;&#1090;&#1072;&#1093; &#1093;&#1199;&#1095; 9,81 &#1073;&#1072;&#1081;&#1085;&#1072;"/>
+            <assign variable="g" expression="9.81"/>
+            <comment text="&#1089;&#1091;&#1084;&#1085;&#1099; &#1061; &#1090;&#1101;&#1085;&#1093;&#1083;&#1101;&#1075;&#1080;&#1081;&#1085; &#1076;&#1072;&#1075;&#1091;&#1091;&#1093; &#1072;&#1085;&#1093;&#1085;&#1099; &#1093;&#1091;&#1088;&#1076;"/>
+            <assign variable="vx" expression="power*Cos(angle1 * (3.14159/180))"/>
+            <comment text="&#1089;&#1091;&#1084;&#1085;&#1099; &#1059; &#1090;&#1101;&#1085;&#1093;&#1083;&#1101;&#1075;&#1080;&#1081;&#1085; &#1076;&#1072;&#1075;&#1091;&#1091;&#1093; &#1072;&#1085;&#1093;&#1085;&#1099; &#1093;&#1091;&#1088;&#1076;"/>
+            <declare name="neith" type="Integer" array="False" size=""/>
+            <assign variable="vy" expression="power*Sin(angle1 * (3.14159/180))"/>
+            <while expression="col != 1 &amp;&amp; col != 2 &amp;&amp; &#13;&#10;col != 3 &amp;&amp; col != 4">
+                <for variable="neith" start="0" end="1000" direction="inc" step="1"/>
+                <comment text="&#1089;&#1091;&#1084;&#1085;&#1099; &#1076;&#1072;&#1088;&#1072;&#1072;&#1075;&#1080;&#1081;&#1085; &#1093;&#1091;&#1075;&#1072;&#1094;&#1072;&#1072;&#1085; &#1076;&#1072;&#1093;&#1100; &#1073;&#1072;&#1081;&#1088;&#1096;&#1080;&#1083;"/>
+                <assign variable="x2" expression="(vx*t)+((salhi*t^2)/2)"/>
+                <assign variable="y2" expression="(vy*t)- (( g*t^2 ) /2)"/>
+                <assign variable="d" expression="Sqrt( (x2-x1)^2 + (y2-y1)^2 )"/>
+                <forward expression="d" pen="down"/>
+                <comment text="&#1089;&#1091;&#1084;&#1085;&#1099; &#1086;&#1076;&#1086;&#1086;&#1075;&#1080;&#1081;&#1085; &#1093;&#1072;&#1088;&#1078; &#1073;&#1091;&#1081; &#1095;&#1080;&#1075;&#1083;&#1101;&#1083; &#1073;&#1086;&#1083;&#1086;&#1085; &#1076;&#1072;&#1088;&#1072;&#1072;&#1075;&#1080;&#1081;&#1085; &#1093;&#1072;&#1088;&#1072;&#1093; &#1095;&#1080;&#1075;&#1083;&#1101;&#1083; &#1093;&#1086;&#1086;&#1088;&#1086;&#1085;&#1076;&#1099;&#1085; &#1079;&#1257;&#1088;&#1199;&#1199;"/>
+                <if expression="y2-y1 &gt;= 0">
+                    <then>
+                        <assign variable="angle2" expression="Arccos((x2-x1)/d) *180/3.14159"/>
+                    </then>
+                    <else>
+                        <assign variable="angle2" expression="-(Arccos((x2-x1)/d)) *180/3.14159"/>
+                    </else>
+                </if>
+                <assign variable="degree" expression="angle1-angle2"/>
+                <turn expression="degree" rotate="right"/>
+                <comment text="&#1089;&#1091;&#1084;&#1085;&#1099; &#1084;&#1101;&#1076;&#1101;&#1101;&#1083;&#1083;&#1080;&#1081;&#1075; &#1096;&#1080;&#1085;&#1101;&#1095;&#1083;&#1101;&#1085;&#1101;"/>
+                <assign variable="x1" expression="x2"/>
+                <assign variable="y1" expression="y2"/>
+                <assign variable="angle1" expression="angle2"/>
+                <assign variable="t" expression="t+0.05"/>
+                <comment text="bullet initial"/>
+                <comment text="&#1089;&#1091;&#1084;&#1085;&#1099; &#1084;&#1101;&#1076;&#1101;&#1101;&#1083;&#1083;&#1080;&#1081;&#1075; &#1073;&#1091;&#1091;&#1076;&#1089;&#1072;&#1085; &#1090;&#1072;&#1085;&#1082;&#1085;&#1099; &#1093;&#1091;&#1074;&#1100;&#1076; &#1073;&#1080;&#1096; &#1077;&#1088;&#1257;&#1085;&#1093;&#1080;&#1081; &#1075;&#1072;&#1079;&#1088;&#1099;&#1085; &#1090;&#1101;&#1085;&#1093;&#1101;&#1075;&#1080;&#1081;&#1085; &#1093;&#1091;&#1074;&#1100;&#1076; &#1072;&#1074;&#1095; &#1199;&#1079;&#1089;&#1101;&#1085;&#1101;&#1101;&#1088; &#1094;&#1086;&#1093;&#1080;&#1083;&#1090;&#1099;&#1085; &#1094;&#1101;&#1075;&#1090; &#1093;&#1199;&#1088;&#1089;&#1101;&#1085; &#1101;&#1089;&#1101;&#1093;&#1080;&#1081;&#1075; &#1090;&#1086;&#1086;&#1094;&#1086;&#1086;&#1083;&#1086;&#1093;&#1086;&#1076; &#1093;&#1103;&#1083;&#1073;&#1072;&#1088; &#1073;&#1086;&#1083;&#1085;&#1086;."/>
+                <assign variable="bulletInitialx" expression="tankx+x1"/>
+                <assign variable="bulletInitialy" expression="tanky+y1"/>
+                <comment text="&#1103;&#1084;&#1072;&#1088; &#1085;&#1101;&#1075;&#1101;&#1085; &#1199;&#1081;&#1083; &#1103;&#1074;&#1076;&#1072;&#1083; &#1073;&#1086;&#1083;&#1089;&#1086;&#1085; &#1101;&#1089;&#1101;&#1093;&#1080;&#1081;&#1075; &#1096;&#1072;&#1083;&#1075;&#1072;&#1085;&#1072;. &#1090;&#1072;&#1085;&#1082; &#1091;&#1089;&#1090;&#1089;&#1072;&#1085;, &#1075;&#1072;&#1079;&#1072;&#1088; &#1093;&#1199;&#1088;&#1089;&#1101;&#1085;, &#1093;&#1103;&#1079;&#1075;&#1072;&#1072;&#1088;&#1072;&#1072;&#1089; &#1076;&#1072;&#1074;&#1089;&#1072;&#1085;."/>
+                <assign variable="col" expression="checkCollision(bulletinitialx, bulletinitialy, hitpoints, sand, col)"/>
+            </while>
+        </body>
+    </function>
+    <function name="tank" type="None" variable="">
+        <parameters>
+            <parameter name="c" type="Integer" array="False"/>
+            <parameter name="h" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <comment text="&#1090;&#1072;&#1085;&#1082;&#1085;&#1099; &#1076;&#1199;&#1088;&#1089; &#1079;&#1091;&#1088;&#1085;&#1072;"/>
+            <declare name="dugui" type="Boolean" array="False" size=""/>
+            <assign variable="dugui" expression="False"/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <home/>
+            <turn expression="90" rotate="right"/>
+            <forward expression="c*50" pen="up"/>
+            <if expression="h&gt;0">
+                <then>
+                    <turn expression="90" rotate="left"/>
+                    <forward expression="h" pen="up"/>
+                </then>
+                <else>
+                    <turn expression="90" rotate="left"/>
+                    <forward expression="h" pen="up"/>
+                </else>
+            </if>
+            <comment text="suuri"/>
+            <turn expression="90" rotate="right"/>
+            <forward expression="25" pen="up"/>
+            <turn expression="90" rotate="left"/>
+            <forward expression="3" pen="up"/>
+            <turn expression="90" rotate="left"/>
+            <forward expression="15" pen="down"/>
+            <turn expression="70" rotate="right"/>
+            <forward expression="15" pen="down"/>
+            <turn expression="120" rotate="right"/>
+            <forward expression="35" pen="down"/>
+            <turn expression="35" rotate="right"/>
+            <forward expression="11.5" pen="down"/>
+            <turn expression="135" rotate="right"/>
+            <forward expression="25" pen="down"/>
+            <comment text="tolgoi"/>
+            <forward expression="7" pen="up"/>
+            <turn expression="90" rotate="right"/>
+            <forward expression="12.5" pen="up"/>
+            <forward expression="7" pen="down"/>
+            <turn expression="90" rotate="right"/>
+            <forward expression="17" pen="down"/>
+            <turn expression="90" rotate="right"/>
+            <forward expression="10" pen="down"/>
+            <comment text="dugui"/>
+            <if expression="dugui == True">
+                <then>
+                    <turn expression="90" rotate="right"/>
+                    <forward expression="17" pen="up"/>
+                    <for variable="i" start="0" end="360+180" direction="inc" step="1">
+                        <forward expression="0.06" pen="down"/>
+                        <turn expression="1" rotate="left"/>
+                    </for>
+                    <forward expression="22" pen="down"/>
+                    <for variable="i" start="0" end="360+180" direction="inc" step="1">
+                        <forward expression="0.03" pen="down"/>
+                        <turn expression="1" rotate="left"/>
+                    </for>
+                    <turn expression="10.5" rotate="right"/>
+                    <forward expression="21.5" pen="down"/>
+                </then>
+                <else/>
+            </if>
+            <home/>
+        </body>
+    </function>
+</flowgorithm>
